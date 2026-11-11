@@ -337,3 +337,107 @@ git mv *.html web_pages
 
 
 }
+
+lesson 7)
+{
+    # базовое использование команды просмотра логов
+git log
+
+# просмотр логов в кратком формате
+git log --oneline
+
+# вызов справки по команде
+git log --help
+
+# вывод статистики по коммитам
+git log --stat
+
+# просмотр патчей (деталей каждого изменения) по коммитам
+git log -p
+
+# ограничение количества комитов в выводе
+git log -4
+
+# опции можно сочетать в одной команде
+git log –-stat -p
+git log -4 --stat -p
+
+# отображение веток в истории коммитов
+git log --graph
+
+# клонирование нового репозитория в отдельной папке
+cd ..
+git clone https://github.com/githubtraining/hellogitworld
+cd hellogitworld
+ls –a
+
+# использование изученных команд в новом репозитории
+git status
+git log
+git log --oneline
+git log --oneline README.txt
+git log --stat
+git log --graph
+
+# фильтр коммитов по автору
+git log --author="Jordan McCullough" –-oneline
+
+# форматирование: дата, автор, время, сообщение
+git log -5 --pretty=format:"%h - %an - %as - %s"
+git log -5 --pretty=format:"%h - %an - %as %n >> %s"
+
+# читабельное предложение с помощью форматирования
+git log --pretty=format:"This guy:%cn committed with hash '%h' on %cd"
+
+
+# компактный отчёт о коммитах в репозитории группирует коммиты по авторам и выводит список их имён вместе с количеством сделанных ими коммитов и краткими описаниями этих коммитов
+git shortlog
+
+# показывает электронную почту автора рядом с его именем
+git shortlog -e
+
+# сортирует вывод по количеству коммитов, от большего к меньшему
+git shortlog -n
+
+# выводит только статистику (количество коммитов) без списка сообщений коммитов
+git shortlog -s
+
+# фильтрация коммитов по датам "до" и "после"
+git shortlog --since="2012-01-01" --until="2012-12-31"
+
+
+}
+
+lesson 8)
+{
+    # вывод reference log
+# отображает только локальную историю
+git reflog
+
+# перемещение в другой репозиторий и вывод аналогичной информации о нем
+cd ../hellogitworld
+pwd
+git reflog
+
+# Сценарий использования: Восстановление удаленного коммита
+#
+git reflog
+git log --oneline
+git reset --hard HEAD~1
+git log --oneline
+git reflog
+git reset --hard 10f7044
+git log –oneline
+
+# Сценарий использования: Удаление старых записей
+#
+git reflog
+git reflog expire --expire=7.days --all --verbose
+git reflog
+
+git reflog expire --expire=1.minutes --all –-verbose
+git reflog
+
+# запуск сборщика мусора Git
+git gc
+}
