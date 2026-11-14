@@ -441,3 +441,94 @@ git reflog
 # запуск сборщика мусора Git
 git gc
 }
+
+lesson 9)
+{
+    ## простой пример
+# вернемся в каталог с репозиторием first_project
+cd ../first_project
+
+# создадим лог-файл
+touch events.log
+# проверим статус файлов
+git status
+# создадим файл для настроек игнора
+nano .gitignore
+# добавим в этот файл имя игнорируемого файла
+ events.log
+
+# снова проверим статус файлов
+git status
+# добавим все изменения в индекс
+git add .
+# снова проверим статус файлов
+git status
+
+# сделаем новый коммит
+git commit -m "add .gitignore file"
+# проверим список коммитов
+git log --oneline
+
+
+##	шаблоны (*, ?)
+# создадим еще пару файлов с логами
+touch events_123.log e_123123.log
+# проверим, что они появились
+ls
+# проверим гит-статус
+git status
+# откроем файл .gitignore, чтобы добавить в него новый шаблон
+nano .gitignore
+ *.log
+
+# снова проверим гит-статус
+git status
+# добавим все изменения в индекс
+git add .
+git status
+# добавим новые изменения в прошлый коммит
+git commit --amend --no-edit
+git status
+git log --oneline
+
+
+## игнор папки
+# создадим новую папку с указанным именем
+mkdir logs
+# переместим все файлы с расширением 'log' в эту папку
+mv *.log logs
+ls
+ls logs/
+git status
+# откроем файл .gitignore, чтобы добавить в него новый шаблон
+nano .gitignore
+  logs/*
+
+git status
+git add .
+git status
+git commit --amend --no-edit
+git log --oneline
+git status
+ls
+
+
+## отмена игнора (“!”)
+#
+touch rare_critical_errors.log
+ls
+git status
+nano .gitignore
+  !rare_critical_errors.log
+
+git status
+git add .
+git status
+git commit --amend --no-edit
+git status
+git log –-oneline
+git log --stat -1
+}
+
+lesson 10)
+
